@@ -1,0 +1,20 @@
+spring:
+     application:
+          name: ifood-service-restaurant
+     h2:
+          console: 
+               enabled: true
+               path: /h2-console
+     datasource:
+          url: jdbc:h2:mem:ifoodDb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+          driver-class-name: org.h2.Driver
+          username: sa
+          password:
+          name: ifoodDb
+server:
+     port: 8083
+
+eureka:
+     client:
+          register-with-eureka: false
+          fetch-registry: false

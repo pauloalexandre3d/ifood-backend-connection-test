@@ -1,0 +1,15 @@
+---
+spring:
+  application:
+    name: ifood-service-discovery
+server:
+  port: 8010
+
+eureka:
+  instance:
+    hostname: localhost 
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8010/eureka/
+    registerWithEureka: false
+    fetchRegistry: false 

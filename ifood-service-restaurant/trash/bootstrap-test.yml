@@ -1,0 +1,17 @@
+---
+spring:
+  application:
+    name: ifood-service-restaurant
+  h2:
+    console:
+      enabled: true
+      path: /h2-abobora
+  cloud:
+    config:
+      server:
+        bootstrap: false
+      discovery:
+        enabled: false
+      enabled: false
+    discovery:
+      enabled: false

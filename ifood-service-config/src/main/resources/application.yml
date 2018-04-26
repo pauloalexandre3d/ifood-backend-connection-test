@@ -1,0 +1,7 @@
+---
+eureka:
+  client:
+    region: default
+    registryFetchIntervalSeconds : 5
+    serviceUrl:
+      defaultZone : http://localhost:8010/eureka/

@@ -1,0 +1,31 @@
+---
+spring:
+  application:
+    name: ifood-service-restaurant
+  h2:
+    console:
+      enabled: true
+      path: /h2-abobora
+  cloud:
+    config:
+      server:
+        bootstrap: false
+    
+server:
+  port: 8083
+
+hibernate:
+  dialect: org.hibernate.dialect.H2Dialect
+  hbm2ddl:
+    auto: none
+
+#spring:
+#  datasource:
+#    username: sa
+#    password: sa
+logging:
+  level:
+    org:
+      hibernate:
+        sta: debug
+      type: trace

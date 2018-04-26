@@ -1,0 +1,6 @@
+---
+spring:
+  cloud:
+    config:
+      name: ifood-service-discovery
+      uri: http://localhost:8001

@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: ifood-service-gateway
+server:
+  port: 8080
+ 
+eureka:
+  client:
+    region: default
+    registryFetchIntervalSeconds: 5
+ 
+zuul:
+  routes:
+    ifood-service-restaurant: 
+      path: /service-restaurant/**
+      sensitiveHeaders: Set-Cookie,Authorization
+    ifood-service-discovery:
+      path: /ifood-service-discovery/**
+      sensitiveHeaders: Set-Cookie,Authorization
+      url: http://localhost:8010
+    
+hystrix:
+  command:
+    ifood-service-restaurant:
+      execution:
+        isolation: 
+          thread:
+            timeoutInMilliseconds: 600000
+    discovery:
+      execution:
+        isolation: 
+          thread:
+            timeoutInMilliseconds: 600000

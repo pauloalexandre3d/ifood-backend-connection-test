@@ -1,0 +1,12 @@
+---
+spring:
+  application:
+    name: ifood-service-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/pauloalexandre3d/ifood
+          searchPaths: ConfigData
+server:
+  port: 8001
