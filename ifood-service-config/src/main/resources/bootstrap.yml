@@ -6,7 +6,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/pauloalexandre3d/ifood
+          uri: https://github.com/pauloalexandre3d/ifood-backend-connection-test
           searchPaths: ConfigData
 server:
   port: 8001

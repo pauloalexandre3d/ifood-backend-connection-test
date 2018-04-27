@@ -56,7 +56,7 @@ public class Restaurant {
 	}
 
 	public Restaurant() {
-		
+		this.unavailabilitySchedule = new ArrayList<>();
 	}
 
 	public Restaurant(String name) {
@@ -111,10 +111,10 @@ public class Restaurant {
 		
 		long seconds = Duration.between(this.statusHistory.get(this.statusHistory.size() - 1).getWhen(), LocalDateTime.now()).getSeconds();
 		
-		if (seconds > this.keepAliveInterval && !isAvailable()) {
-			return Status.OFFLINE;
+		if (seconds < this.keepAliveInterval && isAvailable()) {
+			return Status.ONLINE;
 		}
-		return Status.ONLINE;
+		return Status.OFFLINE;
 	}
 
 	public void setKeepAliveInterval(long seconds) {

@@ -79,7 +79,7 @@ public class RestaurantTest {
 	public void testShouldAssertIfRestaurantIsOnlineKeepAliveInterval() throws Exception {
 		Restaurant restaurant = new Restaurant();
 		restaurant.addStatus(Restaurant.Status.ONLINE, LocalDateTime.now());
-		restaurant.setKeepAliveInterval(2L);
+		restaurant.setKeepAliveInterval(4L);
 		Thread.sleep(2000);
 		assertThat(restaurant.getStatus(), is(Restaurant.Status.ONLINE));
 	}
