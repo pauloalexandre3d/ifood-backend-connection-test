@@ -7,11 +7,11 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -35,11 +35,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class Application {
 
 	public static void main(String[] args) throws MqttSecurityException, MqttException {
-		
+
 		SpringApplication.run(Application.class, args);
-		
+
 	}
-	
+
 	@Bean
 	public DataSource dataSource() {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
@@ -65,7 +65,24 @@ public class Application {
 		txManager.setEntityManagerFactory(entityManagerFactory());
 		return txManager;
 	}
-	
+
+	@Value("${mqtt.host}")
+	private String mqttHost;
+
+	@Value("${mqtt.port}")
+	private String mqttPort;
+
+	@Bean
+	public MqttClient mqttClient() throws MqttException {
+		MqttClient mqttClient = new MqttClient("tcp://".concat(mqttHost).concat(":").concat(mqttPort), "service-restaurant-connections",
+				new MemoryPersistence());
+		MqttConnectOptions options = new MqttConnectOptions();
+		options.setAutomaticReconnect(true);
+		options.setKeepAliveInterval(30);
+		options.setConnectionTimeout(300);
+		options.setCleanSession(true);
+		mqttClient.connect(options);
+		return mqttClient;
+	}
+
 }
-
-

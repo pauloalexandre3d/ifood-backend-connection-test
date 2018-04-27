@@ -24,4 +24,11 @@ eureka:
 hibernate:
   dialect: org.hibernate.dialect.H2Dialect
   hbm2ddl:
-    auto: create    
+    auto: create
+
+mqtt:
+     host: localhost
+     port: 1883
+     topic:
+          restaurants:
+               status: ifood/restaurants/+/status

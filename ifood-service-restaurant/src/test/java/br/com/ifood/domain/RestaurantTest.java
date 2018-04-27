@@ -62,14 +62,14 @@ public class RestaurantTest {
 	@Test
 	public void testShoudAssertRestaurantHasAHistoryStatus() {
 		Restaurant restaurant = new Restaurant();
-		restaurant.addStatus(Restaurant.Status.ONLINE);
+		restaurant.addStatus(Restaurant.Status.ONLINE, LocalDateTime.now());
 		assertThat(restaurant.getStatus(), is(Restaurant.Status.ONLINE));
 	}
 	
 	@Test
 	public void testShouldAssertIfRestaurantIsOfflineAfterKeepAliveInterval() throws Exception {
 		Restaurant restaurant = new Restaurant();
-		restaurant.addStatus(Restaurant.Status.ONLINE);
+		restaurant.addStatus(Restaurant.Status.ONLINE, LocalDateTime.now());
 		restaurant.setKeepAliveInterval(1L);
 		Thread.sleep(2000);
 		assertThat(restaurant.getStatus(), is(Restaurant.Status.OFFLINE));
@@ -78,7 +78,7 @@ public class RestaurantTest {
 	@Test
 	public void testShouldAssertIfRestaurantIsOnlineKeepAliveInterval() throws Exception {
 		Restaurant restaurant = new Restaurant();
-		restaurant.addStatus(Restaurant.Status.ONLINE);
+		restaurant.addStatus(Restaurant.Status.ONLINE, LocalDateTime.now());
 		restaurant.setKeepAliveInterval(2L);
 		Thread.sleep(2000);
 		assertThat(restaurant.getStatus(), is(Restaurant.Status.ONLINE));

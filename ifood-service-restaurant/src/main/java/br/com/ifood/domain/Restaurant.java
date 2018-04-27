@@ -97,11 +97,8 @@ public class Restaurant {
 		}
 	}
 
-	public void addStatus(Status status) {
-		if (this.now == null) {
-			this.now = LocalDateTime.now();
-		}
-		StatusHistory statusNow = new StatusHistory(this.now, status);
+	public void addStatus(Status status, LocalDateTime messageTime) {
+		StatusHistory statusNow = new StatusHistory(messageTime, status);
 		statusNow.setRestaurant(this);
 		this.statusHistory.size();
 		this.statusHistory.add(statusNow);
@@ -114,7 +111,7 @@ public class Restaurant {
 		
 		long seconds = Duration.between(this.statusHistory.get(this.statusHistory.size() - 1).getWhen(), LocalDateTime.now()).getSeconds();
 		
-		if (seconds > this.keepAliveInterval) {
+		if (seconds > this.keepAliveInterval && !isAvailable()) {
 			return Status.OFFLINE;
 		}
 		return Status.ONLINE;

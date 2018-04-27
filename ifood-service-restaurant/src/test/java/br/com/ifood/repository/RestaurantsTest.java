@@ -16,6 +16,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.ifood.application.Application;
@@ -33,6 +34,7 @@ import br.com.ifood.domain.Unavailability;
 @DirtiesContext
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @ActiveProfiles("test")
+@TestPropertySource(locations = "classpath:application-test.yml")
 public class RestaurantsTest {
 
 	@Autowired

@@ -18,3 +18,10 @@ eureka:
      client:
           register-with-eureka: false
           fetch-registry: false
+
+mqtt:
+     host: localhost
+     port: 1883
+     topic:
+          restaurants:
+               status: ifood/restaurants/+/status
